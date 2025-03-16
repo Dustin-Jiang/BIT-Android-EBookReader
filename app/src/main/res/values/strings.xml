@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EBookReader</string>
+    <string name="title_activity_book_detail">
+        Book Details
+    </string>
+    <string name="add_book">添加书籍</string>
+</resources>

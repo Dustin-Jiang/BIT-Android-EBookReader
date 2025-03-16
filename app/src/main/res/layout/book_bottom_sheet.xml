@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingVertical="16dp">
+
+    <TextView
+        android:id="@+id/bookTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearancePopupMenuHeader"
+        android:textAlignment="textStart"
+        android:paddingHorizontal="32dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除"
+        android:textAlignment="textStart"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="8dp"
+        app:icon="@drawable/baseline_delete_24"
+        app:iconTint="?attr/colorError"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:textColor="?attr/colorError"/>
+
+</LinearLayout> 

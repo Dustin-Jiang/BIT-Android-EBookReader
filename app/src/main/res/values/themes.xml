@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.EBookReader" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Enable dynamic color -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="Theme.EBookReader" parent="Base.Theme.EBookReader" />
+
+    <style name="Theme.EBookReader.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
+
+    <style name="Theme.EBookReader.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
