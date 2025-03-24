@@ -229,7 +229,7 @@ class BookDetailFragment : Fragment() {
                             putLong(BOOK_ID, book.id)
                             putLong(CHAPTER_ID, chapter.id)
                             putInt(CHAPTER_INDEX, chapter.index)
-                            putString(CHAPTER_TITLE, CHAPTER_TITLE)
+                            putString(CHAPTER_TITLE, chapter.title)
                         }
 
                         val readingFragment = ReadingFragment().apply {

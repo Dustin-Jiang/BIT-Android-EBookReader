@@ -20,12 +20,6 @@ class MainViewModel(
     private val repository = EBookRepository(application)
     var allBooks: LiveData<List<EBookWithChapters>> = repository.allBooks
 
-    init {
-        allBooks.observeForever { bookList ->
-            Log.d("MainViewModel", "Loaded books: ${bookList.map { it.toEBook().title }}")
-        }
-    }
-
     fun getBooks(): List<EBook> {
         return allBooks.value?.map { it.toEBook() } ?: emptyList()
     }
