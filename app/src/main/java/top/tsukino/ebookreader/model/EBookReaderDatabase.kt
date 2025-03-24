@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asExecutor
 
 class EBookReaderDatabase {
     companion object {
@@ -64,6 +66,7 @@ class EBookReaderDatabase {
                         "ebook_reader.db"
                     )
                     .addMigrations(MIGRATION_1_2)
+                    .setQueryExecutor(Dispatchers.IO.asExecutor())
                     .build()
                 this.db = db
                 return db

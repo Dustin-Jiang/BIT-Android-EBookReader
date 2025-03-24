@@ -25,8 +25,6 @@ class BookDetailViewModel(
             application
         ).ebookDao()
 
-    val allBooks: LiveData<List<EBookWithChapters>> = db.getAllEBooksWithChapters()
-
     private val repository = EBookRepository(application)
 
     fun getBook(id: Long): LiveData<EBook> {
