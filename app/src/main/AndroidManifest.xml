@@ -23,16 +23,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".view.BookDetailActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".view.ReadingActivity"
-            android:parentActivityName=".view.BookDetailActivity"
-            android:exported="false" />
-
     </application>
 
 </manifest>
