@@ -75,8 +75,11 @@ class ReadingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // 设置Toolbar
-        binding.toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        binding.toolbar.apply {
+            setNavigationIcon(R.drawable.baseline_arrow_back_24)
+            setNavigationOnClickListener {
+                requireActivity().onBackPressed()
+            }
         }
 
         // 设置标题
