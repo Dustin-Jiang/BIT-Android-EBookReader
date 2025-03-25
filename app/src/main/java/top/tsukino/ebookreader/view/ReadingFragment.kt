@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -48,18 +50,6 @@ class ReadingFragment : Fragment() {
                 CHAPTER_TITLE
             )
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // 确保 ActionBar 显示
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        // 确保 ActionBar 显示
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
     }
 
     override fun onCreateView(

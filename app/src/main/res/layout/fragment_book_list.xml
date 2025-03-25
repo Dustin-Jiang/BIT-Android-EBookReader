@@ -11,6 +11,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="0dp"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+                app:titleTextColor="?attr/colorPrimary"
+                app:title="@string/app_name"
+                app:layout_scrollFlags="scroll|enterAlways|snap" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
         <GridView
             android:id="@+id/bookGrid"
             android:layout_width="match_parent"

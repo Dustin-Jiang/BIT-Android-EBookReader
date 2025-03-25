@@ -18,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import top.tsukino.ebookreader.MainActivity
 import top.tsukino.ebookreader.R
 import top.tsukino.ebookreader.databinding.FragmentBookListBinding
 import top.tsukino.ebookreader.databinding.BookBottomSheetBinding
@@ -54,16 +55,20 @@ class BookListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupToolbar()
         setupBookGrid()
         setupContentLauncher()
         setupClickListeners()
         observeBooks()
     }
 
-    override fun onStart() {
-        super.onStart()
-        // 确保 ActionBar 显示
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
+    private fun setupToolbar() {
+        // 设置Toolbar
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            title = getString(R.string.app_name)
+            setDisplayHomeAsUpEnabled(false)
+        }
     }
 
     private fun setupBookGrid() {
@@ -98,7 +103,7 @@ class BookListFragment : Fragment() {
     }
 
     private fun observeBooks() {
-        vm.allBooks.observe(viewLifecycleOwner) { books ->
+        vm.allBooks.observe(viewLifecycleOwner) { _ ->
             adapter.updateBooks(vm.getBooks())
         }
     }
@@ -112,11 +117,7 @@ class BookListFragment : Fragment() {
             arguments = args
         }
 
-        requireActivity().supportFragmentManager.beginTransaction()
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_MATCH_ACTIVITY_OPEN)
-            .replace(R.id.container, bookDetailFragment)
-            .addToBackStack(null)
-            .commit()
+        (requireActivity() as MainActivity).navigateToFragment(bookDetailFragment)
     }
 
     private fun showBottomSheet(book: EBook) {
