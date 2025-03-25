@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import top.tsukino.ebookreader.MainActivity
 import top.tsukino.ebookreader.R
 import top.tsukino.ebookreader.databinding.FragmentBookDetailBinding
 import top.tsukino.ebookreader.model.ebook.Chapter
@@ -63,19 +64,6 @@ class BookDetailFragment : Fragment() {
         _binding = FragmentBookDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-    override fun onStart() {
-        super.onStart()
-        // 确保 ActionBar 显示
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        // 确保 ActionBar 显示
-        (requireActivity() as AppCompatActivity).supportActionBar?.show()
-    }
-
 
     override fun onViewCreated(
         view: View,
@@ -236,16 +224,12 @@ class BookDetailFragment : Fragment() {
                             arguments = args
                         }
 
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_MATCH_ACTIVITY_OPEN)
-                            .replace(R.id.container, readingFragment)
-                            .addToBackStack(null)
-                            .commit()
+                        (requireActivity() as MainActivity).navigateToFragment(readingFragment)
                     }
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "更新阅读进度失败: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "打开章节失败: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
