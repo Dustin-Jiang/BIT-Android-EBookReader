@@ -20,7 +20,7 @@ const val CHAPTER_INDEX = "chapter_index"
 const val CHAPTER_ID = "chapter_id"
 const val CHAPTER_TITLE = "chapter_title"
 
-class ReadingFragment : Fragment() {
+class ReadingFragment : ViewFragment() {
     private var _binding: FragmentReadingBinding? = null
     private val binding get() = _binding!!
     private val vm: BookDetailViewModel by viewModels()
