@@ -6,9 +6,15 @@
 
 基本遵守了 Material Design 3 的最佳实践. 
 
+使用 Fragment 实现了宽屏下左右分屏的界面. 
+
 ![Homepage](images/Homepage.png)
 
 ![Book Detail](images/BookDetail.png)
+
+![Books Wide](images/BooksWide.png)
+
+![Reading Wide](images/ReadingWide.png)
 
 ## 没能做好的功能
 
