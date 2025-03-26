@@ -32,7 +32,7 @@ const val BOOK_ID = "book_id"
  * Use the [BookDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BookDetailFragment : Fragment() {
+class BookDetailFragment : ViewFragment() {
     // TODO: Rename and change types of parameters
     private var bookId: Long = 0
     private var _binding: FragmentBookDetailBinding? = null
@@ -84,7 +84,7 @@ class BookDetailFragment : Fragment() {
         // 设置 Toolbar
         binding.toolbar.apply {
             // 设置返回按钮
-            setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material)
+            setNavigationIcon(R.drawable.baseline_arrow_back_24)
             setNavigationOnClickListener {
                 requireActivity().onBackPressed()
             }
@@ -224,7 +224,7 @@ class BookDetailFragment : Fragment() {
                             arguments = args
                         }
 
-                        (requireActivity() as MainActivity).navigateToFragment(readingFragment)
+                        (requireActivity() as MainActivity).navigateToFragment(readingFragment, containerPosition)
                     }
                 }
             } catch (e: Exception) {

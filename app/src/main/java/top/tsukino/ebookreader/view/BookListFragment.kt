@@ -33,7 +33,7 @@ import java.io.InputStreamReader
  * Use the [BookListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class BookListFragment : Fragment() {
+class BookListFragment : ViewFragment() {
     private var _binding: FragmentBookListBinding? = null
     private val binding get() = _binding!!
     private var _bottomSheetBinding: BookBottomSheetBinding? = null
@@ -117,7 +117,7 @@ class BookListFragment : Fragment() {
             arguments = args
         }
 
-        (requireActivity() as MainActivity).navigateToFragment(bookDetailFragment)
+        (requireActivity() as MainActivity).navigateToFragment(bookDetailFragment, containerPosition)
     }
 
     private fun showBottomSheet(book: EBook) {

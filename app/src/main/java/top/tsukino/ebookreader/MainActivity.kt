@@ -15,6 +15,8 @@ import android.content.res.Configuration
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import top.tsukino.ebookreader.util.FragmentUtils
+import top.tsukino.ebookreader.view.CONTAINER_POSITION
+import top.tsukino.ebookreader.view.ViewFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -68,23 +70,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun navigateToFragment(fragment: Fragment) {
+    fun navigateToFragment(fragment: Fragment, position: Int = 0) {
         if (isWideScreen) {
-            // 在宽屏模式下，将当前右侧Fragment移动到左侧，新Fragment放在右侧
-            val currentRightFragment = supportFragmentManager.findFragmentById(R.id.right_container)
-            if (currentRightFragment != null) {
-                // 使用工具类克隆Fragment并恢复状态
-                val newFragment = FragmentUtils.cloneFragment(currentRightFragment, supportFragmentManager)
-
-                // 将Fragment添加到左侧
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.left_container, newFragment)
-                    .commit()
+            if (position == 1) {
+                // 在宽屏模式下，将当前右侧Fragment移动到左侧，新Fragment放在右侧
+                val currentRightFragment = supportFragmentManager.findFragmentById(R.id.right_container) as ViewFragment?
+                if (currentRightFragment != null) {
+                    // 使用工具类克隆Fragment并恢复状态
+                    val newFragment = FragmentUtils.cloneFragmentTo(currentRightFragment, supportFragmentManager, 0)
+                    // 将Fragment添加到左侧
+                    supportFragmentManager.beginTransaction()
+                        .addToBackStack(null)
+                        .replace(R.id.left_container, newFragment)
+                        .commit()
+                }
             }
-            
+
+            fragment.requireArguments().putInt(CONTAINER_POSITION, 1)
             // 将新Fragment添加到右侧
             supportFragmentManager.beginTransaction()
                 .replace(R.id.right_container, fragment)
+                .addToBackStack(null)
                 .commit()
         } else {
             // 在普通模式下，使用正常的导航
@@ -97,5 +103,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        if (isWideScreen) {
+            val rightFragment = supportFragmentManager.findFragmentById(R.id.right_container)
+            if (rightFragment != null) {
+                // 因为两侧都更改了, 压入了两次栈
+                // 所以弹栈两次
+                supportFragmentManager.popBackStack()
+                supportFragmentManager.popBackStack()
+            } else {
+                navController.popBackStack()
+            }
+        } else {
+            super.onBackPressed()
+        }
     }
 }
